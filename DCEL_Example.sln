@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DCEL_Example", "DCEL_Example.vcproj", "{6E4B73C0-2BD7-4E6C-B52E-F5D157D0E98A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E4B73C0-2BD7-4E6C-B52E-F5D157D0E98A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6E4B73C0-2BD7-4E6C-B52E-F5D157D0E98A}.Debug|Win32.Build.0 = Debug|Win32
+		{6E4B73C0-2BD7-4E6C-B52E-F5D157D0E98A}.Release|Win32.ActiveCfg = Release|Win32
+		{6E4B73C0-2BD7-4E6C-B52E-F5D157D0E98A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
