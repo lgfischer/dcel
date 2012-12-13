@@ -41,11 +41,9 @@ public:
     template<class MeshT, class MeshT2>
     static void copyDcelData(const MeshT& source, MeshT2& target )
     {
-        const MeshT::Vertex* vertex = NULL;
-        const unsigned int numVertices = source.getNumVertices();
         const MeshT::Face* face = NULL;
+        const unsigned int numVertices = source.getNumVertices();
         const unsigned int numFaces = source.getNumFaces();
-        const MeshT::HalfEdge* edge = NULL;
         const unsigned int numEdges = source.getNumHalfEdges();
 
         target.clear();
@@ -134,10 +132,9 @@ template <class MeshT>
 void DCELStream<MeshT>::write(const MeshT& mesh, std::ostream &stream)
 {
     const MeshT::Vertex* vertex = NULL;
-    const unsigned int numVertices = mesh.getNumVertices();
     const MeshT::Face* face = NULL;
+    const unsigned int numVertices = mesh.getNumVertices();
     const unsigned int numFaces = mesh.getNumFaces();
-    const MeshT::HalfEdge* edge = NULL;
     const unsigned int numEdges = mesh.getNumHalfEdges();
 
     stream << "version 1" << std::endl;
@@ -229,19 +226,19 @@ void DCELStream<MeshT>::read_v1(MeshT& mesh, std::istream &stream)
 
         else if( str=="vc" )
         {
-            unsigned int vc = -1;
+            unsigned int vc = std::numeric_limits<unsigned int>::max();
             stream >> vc;
             mesh.getVertices().reserve( vc*5 );
         }
         else if( str=="fc" )
         {
-            unsigned int fc = -1;
+            unsigned int fc = std::numeric_limits<unsigned int>::max();
             stream >> fc;
             mesh.getFaces().reserve( fc*5 );
         }
         else if( str=="ec" )
         {
-            unsigned int ec = -1;
+            unsigned int ec = std::numeric_limits<unsigned int>::max();
             stream >> ec;
             mesh.getHalfEdges().reserve( ec*5 );
         }

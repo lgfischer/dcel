@@ -374,7 +374,7 @@ void convertBetweenMeshes(MyMeshUsingVector* meshUsingVector, MyMesh* mesh)
 	}
 }
 
-int main(int argc, char* argv[])
+int main(int, char*[])
 {
 	try
 	{

@@ -12,6 +12,7 @@
 
 #include <vector>
 #include <list>
+#include <limits>
 
 #include "Vertex.h"
 #include "Face.h"
@@ -19,6 +20,8 @@
 #include "EdgeIterator.h"
 
 #include "Exception.h"
+
+#define MESH_NULL_ID (std::numeric_limits<unsigned int>::max())
 
 /**
 	A class that stores the mesh structure. It the list of the vertices, edges and faces.
@@ -250,7 +253,7 @@ private:
     std::vector<HalfEdge> edges;
 
     std::list<int> unhandledTriangles;
-    int unhandledTrianglesCount;
+    unsigned int unhandledTrianglesCount;
 };
 
 
@@ -334,7 +337,7 @@ unsigned int Mesh<Vdt,Hdt,Fdt>::createTriangularFace(unsigned int vId1, unsigned
     if (e2!=NULL) readyEdges++;
     if (e3!=NULL) readyEdges++;
 
-    unsigned int nullFaceId = (unsigned int)-1;
+    unsigned int nullFaceId = MESH_NULL_ID;
     unsigned int faceId = nullFaceId;
     Face* face = NULL;
 
@@ -734,7 +737,7 @@ unsigned int Mesh<Vdt,Hdt,Fdt>::getVertexId(const Vertex* vertex) const
         if( &(this->vertices[id]) == vertex )
             return id;
     }
-    return -1;
+    return MESH_NULL_ID;
 }
 
 template<class Vdt, class Hdt, class Fdt>
@@ -772,7 +775,7 @@ unsigned int Mesh<Vdt,Hdt,Fdt>::getFaceId(const Face* face) const
         if( &(this->faces[id]) == face )
             return id;
     }
-    return -1;
+    return MESH_NULL_ID;
 };
 
 template<class Vdt, class Hdt, class Fdt>
@@ -832,7 +835,7 @@ unsigned int Mesh<Vdt,Hdt,Fdt>::getHalfEdgeId( HalfEdge* halfEdge) const
         if( &(this->edges[id]) == halfEdge )
             return id;
     }
-    return -1;
+    return MESH_NULL_ID;
 }
 
 template<class Vdt, class Hdt, class Fdt>
@@ -960,12 +963,12 @@ void Mesh<Vdt,Hdt,Fdt>::manageUnhandledTriangles()
         throw cpp::Exception("The number of unhandled triangles should be equal to the number of unhandled vertices*3!");
     }
 
-    int curTriangle = 0;
+    unsigned int curTriangle = 0;
     while( !this->unhandledTriangles.empty() )
     {
         if( curTriangle==unhandledTrianglesCount )
         {
-            int remainingTriangles = this->unhandledTriangles.size() / 3;
+            unsigned int remainingTriangles = this->unhandledTriangles.size() / 3;
             if( remainingTriangles<unhandledTrianglesCount )
             {
                 unhandledTrianglesCount = remainingTriangles;
